@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* You can add global styles to this file, and also import other style files */
+
+$primary-font: 'Roboto Condensed', sans-serif;
+$secundary-font: 'Roboto', sans-serif;
+
+body {
+  font-size: 14px;
+  font-family: $secundary-font;
+}
+
+h1 {
+  font-size: 28px;
+  font-family: $primary-font;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 18px;
+}

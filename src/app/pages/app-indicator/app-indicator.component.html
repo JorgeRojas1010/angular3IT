@@ -1,0 +1,11 @@
+<section class="app-indicator">
+  <div class="header">
+    <button type="button" class="btn btn-link text-primary" routerLink="/">
+      <img src="assets/img/icon/arrow_right.svg" class="icon" width="18" alt="icon arrow">
+      Indicadores
+    </button>
+    <p class="indicator my-auto">{{dataIndicator.nombre}}</p>
+  </div>
+  <app-list *ngIf="dataIndicator" [data]="dataIndicator"></app-list> 
+</section>
+  

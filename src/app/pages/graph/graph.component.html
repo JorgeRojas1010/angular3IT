@@ -1,0 +1,45 @@
+<section class="graph">
+  <div class="header">
+    <button type="button" class="btn btn-link text-primary" routerLink="/">
+      <img src="assets/img/icon/arrow_right.svg" class="icon" width="18" alt="icon arrow">
+      Indicadores
+    </button>
+    <p class="indicator my-auto">{{dataIndicator.nombre}}</p>
+  </div>
+  <div *ngIf="dataIndicator" class="data">
+    <h1 class="text-primary text-center py-3">{{dataIndicator.serie[0].valor | currency}}</h1>
+    <form class="px-5">
+      <div class="form-group row">
+        <label for="inputName" class="col-6 col-form-label">Nombre</label>
+        <div class="col-6">
+          <input type="text" class="form-control" id="inputName" value="{{dataIndicator.nombre}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputDate" class="col-6 col-form-label">Fecha</label>
+        <div class="col-6">
+          <input type="text" class="form-control" id="inputDate" value="{{dataIndicator.serie[0].fecha | date: 'shortDate'}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputUnit" class="col-6 col-form-label">Unidad de medida</label>
+        <div class="col-6">
+          <input type="text" class="form-control" id="inputUnit" value="{{dataIndicator.unidad_medida}}">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="info-graph">
+    <!--<div class="chart-wrapper">
+      <canvas baseChart 
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels" 
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        chartType="line" 
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>-->
+  </div>
+</section>

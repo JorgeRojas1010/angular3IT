@@ -1,0 +1,13 @@
+.coin {
+  &-name {
+    display: flex;
+    flex-direction: column;
+    .text-info {
+      font-size: 12px;
+    }
+  }
+  &-icon {
+    display: flex;
+    align-self: center;
+  }
+}

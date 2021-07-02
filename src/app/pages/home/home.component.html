@@ -1,0 +1,87 @@
+<section class="home container-fluid d-none d-sm-block">
+  <div class="tablet-mobile">
+    <h1 class="py-3">Título</h1>
+    <div class="box">
+      <div class="title">
+        <h2 class="m-0 p-3">Título Caja</h2>
+      </div>
+      <div class="info">
+        <div class="description">
+          <h3 class="pt-3 pl-3">Lorem, ipsum.</h3>
+          <ul>
+            <li *ngFor="let item of content" class="mb-1">{{item.info}}</li>
+          </ul>
+        </div>
+        <div class="box-white m-3 pt-4">
+          <ul>
+            <li>
+              <div class="d-flex">
+                <p class="width-60">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quia vero minima, et sapiente officiis illum.</p>
+                <p class="width-40 text-right pr-3">$200.000.000.000.000.000</p>
+              </div>
+            </li>
+            <li>
+              <div class="d-flex">
+                <p class="width-60">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p class="width-40 text-right pr-3">$200.000.000.000.000.000</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="mx-5">
+      <ngb-panel id="custom-panel-1">
+        <ng-template ngbPanelHeader let-opened="opened">
+          <div class="d-flex align-items-center justify-content-end">
+            <button ngbPanelToggle class="btn btn-link p-0">{{ opened ? 'Cerrar' : 'Abrir' }}</button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <!---->
+          <form [formGroup]="formData">
+            <div class="form-row pt-3">
+              <div style="z-index: 999;" class="form-group col-md-3">
+                <div class="input-group">
+                  <input class="form-control" placeholder="Seleccionar..."
+                         name="dateFirst" formControlName="dateFirst" ngbDatepicker #dF="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="dF.toggle()" type="button"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <div class="input-group">
+                  <input class="form-control" placeholder="Seleccionar..."
+                         name="dateEnd" formControlName="dateEnd" ngbDatepicker #dE="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="dE.toggle()" type="button"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <!--<label for="inputState">State</label>-->
+                <select id="inputState" class="form-control" name="indicator" formControlName="indicator">
+                  <option value="">Seleccionar...</option>
+                  <option value="">Todos los indicadores</option>
+                  <option *ngFor="let item of optionSelect" value="{{item.codigo}}">{{item.nombre}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row pt-3 justify-content-lg-between">
+              <div class="form-group col-6">
+                <input type="text" class="form-control" id="inputAddress" placeholder="Busqueda General..." name="searchGeneral" formControlName="searchGeneral">
+              </div>
+              <button class="btn btn-success btn-success--height" (click)="searchFilter()">
+                <span class="m-0 p-0">Buscar</span>
+              </button>
+            </div>
+          </form>
+          <!---->
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</section>
+<!--<app-list *ngIf="dataIndicator" [data]="dataIndicator"></app-list>-->
+<app-table *ngIf="newData" [(newData)]="newData"></app-table>

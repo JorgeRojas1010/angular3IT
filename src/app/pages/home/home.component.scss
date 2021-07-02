@@ -1,0 +1,39 @@
+.home {
+  .box {
+    background-color: #F4F5F7;
+    border: 1px solid #B3B8BC;
+    width: 100%;
+    .title {
+      border-bottom: 1px solid #B3B8BC;
+    }
+    .info {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      @media (max-width:960px) {
+        flex-direction: column;
+      }
+      .description {
+        width: 40%;
+        @media (max-width:960px) {
+          width: 100%;
+        }
+      }
+      .box-white {
+        background-color: #fff;
+        border: 1px solid #B3B8BC;
+        width: 60%;
+        @media (max-width:960px) {
+          width: calc(100% + -30px);
+        }
+        .width-60 { width: 60%;}
+        .width-40 { width: 40%;}
+      }
+    }
+  }
+  .btn-success {
+    &--height {
+      height: 38px;
+    }
+  }
+}

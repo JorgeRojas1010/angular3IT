@@ -1,0 +1,48 @@
+<div *ngIf="newData" class="list-group d-block d-sm-none">
+  <!--<div *ngIf="!serie">
+    <button *ngFor="let item of newData" type="button" routerLink="/indicator/{{item.codigo}}"
+    class="list-group-item list-group-item-action d-flex justify-content-between px-3 py-1 coin">
+      <div class="coin-name">
+        <span class="">{{item.nombre}}</span> {{item.lenght}}
+        <span class="text-primary">{{item.unidad_medida}}</span>
+      </div>
+      <a routerLink="/graph/{{item.codigo}}" class="coin-icon">
+        <img src="assets/img/icon/info.svg" alt="icon info">
+        <img src="assets/img/icon/arrow_right.svg" alt="icon arrow">
+      </a>
+    </button>
+  </div>
+
+  <ul *ngIf="serie" class="list-group">
+    <li *ngFor="let item of newData" class="list-group-item d-flex justify-content-around">
+      <span class="text-primary">{{item.fecha | date: 'shortDate'}}</span>
+      <span *ngIf="!unit">{{item.valor | currency}}</span>
+      <span *ngIf="unit">{{item.valor | percent}}</span>
+    </li>
+  </ul>
+</div>
+
+<div class="container-fluid d-none d-sm-block">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Unidad de medida</th>
+        <th scope="col">fecha</th>
+        <th scope="col">valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of newData; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.codigo}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.unidad_medida}}</td>
+        <td>{{item.fecha | date: 'shortDate'}}</td>
+        <td>{{item.valor | currency}}</td>
+      </tr>
+    </tbody>
+  </table>-->
+</div>

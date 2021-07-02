@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col"></th>
+    <th scope="col">Código</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Unidad de medida</th>
+    <th scope="col">Valor</th>
+    <th scope="col">Fecha</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of newData">
+    <th scope="row"></th>
+    <td>{{ data.codigo }}</td>
+    <td>{{ data.nombre }}</td>
+    <td>{{ data.unidad_medida }}</td>
+    <td *ngIf="data.unidad_medida !== 'Porcentaje'">{{ data.valor | currency }}</td>
+    <td *ngIf="data.unidad_medida === 'Porcentaje'">{{ data.valor | percent }}</td>
+    <td>{{ data.fecha | date: 'shortDate' }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center p-2">
+  <!--<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()"></ngb-pagination>-->
+</div>

@@ -16,29 +16,28 @@ export interface Date {
 })
 export class HomeComponent implements OnInit {
 
-  public dataIndicator: any;
-  content = [
+  public content = [
     {info: 'Lorem ipsum dolor sit amet consectetur 1.'},
     {info: 'Lorem ipsum dolor sit amet consectetur 2.'},
     {info: 'Lorem ipsum dolor sit amet consectetur 3.'},
     {info: 'Lorem ipsum dolor sit amet consectetur 4.'}
   ];
-  newData: any;
-
+  public data: any;
   public formData: FormGroup;
-  optionSelect: any;
+  public optionSelect: any;
+  public viewSimulator: boolean = true;
+  public isGraph: boolean = false;
 
   constructor(
     private apiServise: ApiService,
     private fb: FormBuilder,
   ) {
-    
     this.formData = this.fb.group({
       dateFirst: [''],
       dateEnd: [''],
       indicator: [''],
       searchGeneral: ['']
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -47,18 +46,17 @@ export class HomeComponent implements OnInit {
 
   private getData(indicator?: string, date?: string) {
     this.apiServise.getData(indicator, date).subscribe(res => {
-      this.newData = '';
-      this.dataIndicator =  res;
+      this.data = '';
       if (!res.serie) {
         const { uf, ivp, dolar, dolar_intercambio, euro, ipc, utm, imacec, tpm, libra_cobre, tasa_desempleo, bitcoin } = res;
-        this.newData = [ uf, ivp, dolar, dolar_intercambio, euro, ipc, utm, imacec, tpm, libra_cobre, tasa_desempleo, bitcoin ];
-        this.optionSelect = this.newData;
+        this.data = [ uf, ivp, dolar, dolar_intercambio, euro, ipc, utm, imacec, tpm, libra_cobre, tasa_desempleo, bitcoin ];
+        this.optionSelect = this.data;
       } else {
         const { codigo, nombre, unidad_medida } = res;
-        const data = res.serie.map((info: any) => {
+        const dataRes = res.serie.map((info: any) => {
           return {...info, codigo, nombre, unidad_medida}
         })
-        this.newData = data;
+        this.data = dataRes;
       }
     });
   }
@@ -70,19 +68,19 @@ export class HomeComponent implements OnInit {
     const search = this.formData.controls.searchGeneral.value;
 
     if (search !== '') { // Filtrar Buscador general
-      this.newData = this.optionSelect.filter((res: any) => {
+      this.data = this.optionSelect.filter((res: any) => {
         return res.nombre.toLowerCase() === search;
       });
     } else if (dateEnd !== '' && dateFirst !== '') { // Filtrar rango de fechas dentro de un indicador
-      const info = this.newData.filter((res: any) => {
+      const info = this.data.filter((res: any) => {
         return this.changeDateGetTime(res.fecha) >= this.changeDateGetTime(dateFirst) && 
         this.changeDateGetTime(res.fecha) <= this.changeDateGetTime(dateEnd);
       });
-      this.newData = info;
+      this.data = info;
     } else if (search === '' && indicator === '' && (dateFirst === '' || dateEnd === '')) { // Data de indicadores
-      this.newData = this.optionSelect;
+      this.data = this.optionSelect;
     } else if (indicator === '' && dateFirst !== '') { // Data de indicadores
-      this.newData = this.optionSelect;
+      this.data = this.optionSelect;
     } else if (indicator !== '' && dateFirst !== '') { // getData API "indicador + fecha"
       this.getData(indicator, this.dateFormatApi(this.formData.controls.dateFirst.value));
     } else if (indicator !== '' && dateFirst === '') { // getData API "indicador"
@@ -100,5 +98,13 @@ export class HomeComponent implements OnInit {
 
   private changeDateGetTime(dateStr: any) {
     return new Date(dateStr).getTime()
+  }
+
+  public changeViewSimulator(e: any) {
+    const { route, code } = e;
+    this.data = '';
+    this.getData(code)
+    this.viewSimulator = (route === 'home') ? true : false;
+    this.isGraph = (route === 'graph') ? true : false;
   }
 }

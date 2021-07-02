@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -6,27 +7,29 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  @Input() data: any;
-  public newData: any;
+  @Input() newData: any;
+  @Input() isPrice: boolean = false;
+  @Output() sendInfo = new EventEmitter();
   public serie: boolean;
   public unit: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.serie = false;
     this.unit = false;
   }
 
   ngOnInit(): void {
-    if (!this.data.serie) {
-      const { uf, ivp, dolar, dolar_intercambio, euro, ipc, utm, imacec, tpm, libra_cobre, tasa_desempleo, bitcoin } = this.data;
-      this.newData = [ uf, ivp, dolar, dolar_intercambio, euro, ipc, utm, imacec, tpm, libra_cobre, tasa_desempleo, bitcoin ];
+    if (!this.newData.serie) {
       this.serie = false;
     } else {
-      const test = this.data.unidad_medida;
+      const test = this.newData.unidad_medida;
       this.unit = (test !== 'Porcentaje') ? false : true;
-      console.log('que eres', this.data.unidad_medida);
-      this.newData = this.data.serie
+      this.newData = this.newData.serie;
       this.serie = true;
     }
+  }
+
+  navigator(route: string, code: string) {
+    this.sendInfo.emit({ route, code });
   }
 }

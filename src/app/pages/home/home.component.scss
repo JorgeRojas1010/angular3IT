@@ -37,3 +37,33 @@
     }
   }
 }
+
+.mobile {
+  .mobile-price-graph {
+    .header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .btn-link {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        font-size: 12px;
+        .icon {
+          transform: rotate(180deg);
+        }
+      }
+      .indicator {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+    .data {
+      .form-control {
+        font-size: 12px;
+      }
+    }
+  }
+}

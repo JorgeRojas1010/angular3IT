@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
 
+## download and prepare
+
+Run in terminal `git clone https://github.com/JorgeRojas1010/angular3IT.git` once the download is complete run the command `npm i` or `npm install` to download the project dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
